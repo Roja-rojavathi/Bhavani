@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Story Glory</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, white, lightblue);
+      color: #333;
+    }
+    header {
+      background: blue;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .story-box {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      text-align: left;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-in;
+    }
+    .story-img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .controls {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .controls button {
+      margin: 5px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    📖 Story Glory
+  </header>
+  
+  <div class="container">
+    <h2>Welcome to Our Story Glory World</h2>
+    <p>Select your age to read a story just for you!</p>
+<image src="kids.webp"></image>
+
+    <select id="ageSelect">
+      <option value="">-- Select Age --</option>
+    </select>
+    <button onclick="showStory()">Click and scroll to get Story</button>
+
+    <div id="story" class="story-box" style="display:none;">
+      <img id="storyImage" class="story-img" src="" alt="Story Image" style="display:none;"/>
+      <p id="storyText"></p>
+      <div class="controls">
+        <button onclick="prevStory()">⬅ Previous</button>
+        <button onclick="readStory()">🔊 Listen</button>
+        <button onclick="nextStory()">Next ➡</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fill dropdown with ages 1 to 18
+    const ageSelect = document.getElementById("ageSelect");
+    for (let i = 1; i <= 18; i++) {
+      let option = document.createElement("option");
+      option.value = i;
+      option.text = i;
+      ageSelect.appendChild(option);
+    }
+
+    // Stories with multiple options per age
+    const stories = {
+      1: [
+        {text: `Once upon a time, there was a little star in the sky...It wasn't a very big star, oh no. It was a just-your-size star, tiny and bright.
+
+One night, the little star looked down, down, down through the dark, velvety sky. And what do you think it saw?
+
+It saw you.
+
+You were in your cozy room, wearing your softest pajamas, all clean from your bath. You smelled like baby shampoo and sweetness.
+
+The little star saw you yawn—a big, round, "O" yawn. It saw your eyelids get heavy, like two little curtains wanting to close. But you were fighting it, just a little, wiggling your toes and looking around.
+
+The star knew just what to do.
+
+It began to twinkle. Not a loud, flashy twinkle, but a soft, gentle pulsing. Sparkle… pause… sparkle…
+
+It twinkled a beam of soft, silver light down to Earth. The light didn't wake you up. Oh no. It danced quietly across your floor, like a silent, shiny friend.
+
+The beam of light tiptoed over to your crib and reached out one shimmering finger. It patted your back ever so gently… pat, pat, pat.
+
+And then it began to sing a star-song. Not with words, but with a soft, humming vibration that only little dreamers can hear. It was a song that sounded like… "Hmmmm-mmmm-mmmm… sleep now… hmmmm-mmmm-mmmm… you are so loved."
+
+Your breathing got slower. In… and out… Your eyelids finished their journey and closed all the way. Your hand relaxed, resting softly on your cheek.
+
+You were safe. You were warm. You were deeply, perfectly asleep.
+
+The little star twinkled one last, happy twinkle. It had done its most important job. It watched over you for one more minute, then snuggled into its corner of the night sky, happy to be your guardian of dreams.
+
+And as you slept, you dreamed of soft, twinkling lights and a gentle, humming song that made you feel like the most cherished little one in the whole wide universe.`, img: "little star.webp"},
+        {text: `A baby cloud floated in the sky and made soft rain...
+A baby cloud floated in the sky. It was a fluffy, puffy, just-like-a-blanket cloud. It was so soft and new.
+
+The baby cloud looked down, down, down at the big, wide world. It saw green trees and yellow flowers. It saw a little blue pond. But the pond was looking a bit sad. Its water was getting low.
+
+The baby cloud wanted to help. It took a deep, deep breath, filling itself up with love. It wiggled its fluffy edges and…
+
+Pitter… patter… pitter… patter…
+
+It began to make soft rain. Not a loud, scary rain. Oh no. This was a tickly, giggly, sprinkly rain.
+
+Down on the ground, you were playing in your garden. You were wearing your little yellow rain boots and a bright blue jacket.
+
+Pitter… patter… A raindrop landed on your nose! Boop!
+You blinked and looked up at the sky.
+
+Pitter… patter… A raindrop landed on your hand! Splish!
+You looked at your fingers, all wet and shiny.
+
+You held out your hands and the baby cloud sprinkled a few more drops right into your palms. Tinkle, tinkle, tinkle.
+
+It was a cool, fresh, happy feeling. You giggled a little giggle.
+
+The baby cloud was so happy to hear your giggle! It wiggled with joy and made a little more soft rain to water the thirsty flowers. The daisies perked up their heads. The tulips had a nice, cool drink.
+
+The sun peeked out from behind the cloud, making the whole wet world sparkle. Every raindrop on every leaf and petal glittered like a tiny diamond.
+
+And then, the baby cloud, tired from all its good work, began to drift away on a gentle breeze. But as it left, it made one last, special thing in the sky… a beautiful, colorful rainbow, just for you.
+
+It arched over your house, a bridge of soft red, orange, yellow, green, blue, and purple. You pointed your little finger up at it, your eyes wide with wonder.
+
+The rainbow was the baby cloud’s way of saying, “Goodbye for now, little friend. Thank you for playing in my soft, soft rain.”
+
+You smiled a big, wet, happy smile, and went inside for a warm, snuggly towel cuddle.`, img: "baby.webp"}
+      ],
+      2: [
+        {text: `In a quiet garden, there was a small butterfly...In a quiet garden, there was a small butterfly. It had wings as yellow as the happy sun.
+
+The butterfly saw a flower. It was a big, red flower.
+Flutter, flutter, flutter went the butterfly. It landed on the soft petal.
+“Hello, flower!” whispered the butterfly.
+
+Then, the butterfly saw a little rock. Sitting on the rock was a busy ladybug with shiny spots.
+Flutter, flutter, flutter went the butterfly. It flew right next to the ladybug.
+“Hello, friend!” whispered the butterfly.
+
+Then, a gentle breeze blew through the garden.
+Whoosh…
+The butterfly’s wings wiggled. “Wheee!” it giggled.
+It flew up, up, up into the warm, blue sky.
+
+It danced over the green grass and past the sleepy trees.
+It was a beautiful day for a little butterfly.`, img: "butterfly.avif"},
+        {text: `A tiny duckling swam happily in the pond...A tiny duckling swam happily in the pond. Its feathers were soft and fluffy, like a little yellow cloud.
+
+Paddle, paddle, paddle went its little webbed feet.
+
+Splash splash!
+
+It saw a big, white swan gliding so smoothly. "Hello, swan!" cheeped the duckling.
+
+It saw a green frog sitting on a lily pad. Ribbit ribbit!
+"Hello, frog!" cheeped the duckling.
+
+Then, the tiny duckling heard a familiar sound. "Quack quack quack!"
+
+It was Mama Duck! She was waiting by the reeds.
+
+Paddle, paddle, paddle! The tiny duckling swam as fast as it could. It snuggled right up to Mama’s warm, feathery side.
+
+They swam together towards the sunset, one happy duck family.
+
+The end. Time for cozy snuggles, just like the duckling.`, img: "duck.jpg"}
+      ],
+      3: [
+        {text: `A tiny kitten lived in a cozy house...It had fur as soft as a whisper and a little pink nose that wiggled.
+
+One sunny morning, the kitten saw something fun. A bright, red ball of yarn!
+
+Bat, bat, bat went the kitten’s little paws. The yarn ball rolled and bounced across the floor.
+
+Pounce! The kitten jumped on it! The yarn wiggled and the kitten tumbled… roll, roll, roll.
+
+Then, the kitten saw a warm, sunny spot on the rug. The yarn ball was all tired out.
+
+So the kitten curled up, purr, purr, purr, in the warm, yellow sun.
+
+It closed its eyes for a little cat nap, all cozy and happy.
+
+The end. Time to be as cozy as the kitten. Shhh.
+`, img: "kitten.webp"},
+        {text: `A cheerful squirrel collected nuts all day...He was a very busy squirrel!
+
+Scamper, scamper, scratch went his little feet on the tree bark.
+
+He found a big, brown acorn under an oak tree. Pop! He put it in his cheek.
+He found a shiny chestnut by the path. Pop! He put it in his other cheek.
+
+His cheeks were so full! He looked like he had two little balloons on his face!
+
+He carried all his nuts up, up, up his favorite tall tree. He tucked them safely away in a hole in the trunk. "For later!" he chattered.
+
+His work was all done. He sat on a branch, his fluffy tail twitching. He nibbled on one tiny, last nut. Crunch, crunch, munch.
+
+The sun was warm. The squirrel was happy and full.
+
+He curled his tail over his nose like a blanket and had a little snooze in the branches.
+
+The end. Time to be as cozy as the squirrel. Shhh.`, img: "squirrel.jpeg"}
+      ],
+      // ... repeat for other ages with at least 2 stories each
+       4: [
+        {text: `Lila was digging in her backyard with her bright yellow shovel. The sun was warm on her back. Scrape, scoop, toss!
+
+Clink!
+
+Her shovel hit something hard. She pushed the dirt away with her hands. There, half-buried in the earth, was a stone. But it wasn't a normal, gray stone. This one was smooth and shone with a soft, blue light. It was a sparkly stone!
+
+"Ooh!" gasped Lila. She picked it up. It felt warm and happy in her hand.
+
+She ran inside to show her mom. "Look what I found!"
+
+"Oh, how magical!" said her mom. "I wonder what it does?"
+
+Lila held the stone all afternoon. She pretended it was a jewel for a queen. She used it to make shadow puppets on the wall. But the stone kept its sparkle a secret.
+
+That night, as Lila got ready for bed, she put the sparkly stone on her windowsill next to her teddy bear.
+
+She turned off the light. The room was dark and full of fuzzy shadows.
+
+Just as Lila started to feel a little bit scared, she saw it.
+
+A soft, blue glow began to spread from the windowsill. It lit up a small, cozy circle on her floor. The sparkly stone was shining! It wasn't a bright, scary light. It was a gentle, friendly glow, like a tiny piece of moonlight just for her.
+
+The shadows weren't scary anymore. They were just sleepy shapes, resting.
+
+Lila smiled. She felt brave and safe. She pulled her covers up to her chin and watched the soft blue light until her eyes grew heavy and she drifted off to sleep, dreaming of magical gardens and friendly, shining stones.
+
+The end. Sweet dreams`, img: "stone.avif"},
+        {text: `Wisp was a little cloud, new and fluffy white. He loved to play with the other clouds in the big blue sky. They would play a game called "Change Shapes!"
+
+One cloud would turn into a woolly sheep. Baa!
+Another would become a swoopy airplane. Neeeeowm!
+
+Wisp wanted to play. He squeezed his middle and puffed out his cheeks. He tried to turn into a dinosaur. But instead of a long neck and tail, he just made a wobbly lump. He tried to become a flower, but only a few tiny drops of rain pattered down.
+
+"Oh no," Wisp thought. "I've lost my puff! I can't make any shapes at all."
+
+He drifted away from his friends, feeling very small. He didn't notice where he was going until he felt something warm below him. He looked down.
+
+There was a little girl sitting in a garden, looking up at the sky. She looked a little lonely.
+
+Wisp forgot about being sad. He wanted to cheer her up. He thought of the happiest thing he knew: her bright, round, yellow ball he saw rolling in the grass.
+
+He squeezed and concentrated. He thought of nothing but that round, bouncy, happy ball.
+
+The little girl looked up. She pointed her finger and giggled. "Look! A popcorn!"
+
+Wisp looked at his reflection in a birdbath below. He wasn't a wobbly lump! He was perfectly round and fluffy. He had turned into a big, white piece of popcorn!
+
+He was so happy, he jiggled with joy. The little girl laughed and clapped her hands.
+
+Just then, his cloud friends floated over. "Wow, Wisp!" they whooshed. "Popcorn! That's the best shape ever!"
+
+Wisp beamed. He hadn't lost his puff at all. He just needed a happy reason to find it.
+
+And from then on, Wisp's favorite game was making shapes to make people on the ground smile.
+
+The end. What shape would you like to see in the clouds today?`, img: "cloud.jpeg"}
+      ],
+5: [
+        {text: `Leo was having a LOUD day. His little brother was crying, the dog was barking, and his toys seemed to clatter and crash every time he moved. He put his hands over his ears. "It's too noisy!" he said.
+
+His Grandpa smiled. "Come with me," he said, holding out his hand. "Let's go on a Listening Walk."
+
+"A what?" asked Leo.
+
+"A walk where we don't talk," whispered Grandpa. "We just use our super-hearing ears."
+
+Leo wasn't sure, but he took Grandpa's hand. They stepped outside into the warm afternoon.
+
+At first, Leo heard nothing. Then, Grandpa pointed up. High in the oak tree, a bird was singing. Chirp-chirp-cheep-cheep! It sounded like a tiny, happy song.
+
+Leo smiled.
+
+They walked a little further. Grandpa stopped and pointed to his ear. Leo listened hard. He heard a soft bzzzzzzzzz. A fuzzy bumblebee was busy drinking nectar from a purple flower.
+
+Next, they tip-toed past the park. Leo heard a different sound. Squeak-squeak-squeak. It was the sound of the big swing swaying in the breeze, all by itself.
+
+They walked to the rusty red gate at the end of the lane. Grandpa put a finger to his lips. Leo held his breath and listened. There was a quiet rustle-rustle in the tall grass. Maybe it was a little mouse, having its own adventure!
+
+On the way home, the sky turned orange and pink. Suddenly, a happy jingle filled the air. The ice cream truck! This was a sound Leo knew very well.
+
+Grandpa bought them both a chocolate-chip cookie ice cream sandwich. They sat on the front steps to eat them.
+
+Crunch... munch... lick.
+
+Leo realized something. His super-hearing ears were working. He could hear his own yummy bites and the quiet sound of Grandpa smiling next to him.
+
+The world wasn't too noisy anymore. It was full of secret, wonderful sounds. He gave Grandpa a sticky, chocolatey hug.
+
+"Thank you for the Listening Walk," Leo whispered.
+
+"It's my favorite kind," Grandpa whispered back.
+
+The end. What sounds can your super-hearing ears find today?`, img: "friends.jpeg"},
+        {text: `On the top of Grumble Hill lived a giant named Barnaby. Barnaby was very, very grumpy. He had a big, messy beard and boots that went STOMP, STOMP, STOMP.
+
+The reason he was grumpy was his garden. It was full of prickly thorns, gray rocks, and sad, droopy weeds. "Nothing nice ever grows for me!" he would grumble. His grumbles were so loud they made the teacups rattle in the village below.
+
+One afternoon, after a particularly big STOMP, something fell out of his messy beard. It was a tiny, brown seed. It must have gotten tangled there on a walk.
+
+"Pah! A worthless thing," Barnaby muttered. But he was too tired to stomp on it. He just poked it into the dirt with a giant finger and forgot about it.
+
+The next week, a little girl named Maya from the village was picking blueberries near Grumble Hill. She heard a sad, rumbly sound. It was Barnaby, sighing about his ugly garden.
+
+Maya wasn't scared. She saw the giant's big, muddy boots and had an idea. The next day, she came back with her little watering can. She didn't say a word. She just sprinkled water around the spot where Barnaby had sighed.
+
+The day after that, she came back with a tiny bag of sparkly earthworms from her compost bin. "These will help the soil," she whispered to the ground, and tiptoed away.
+
+Barnaby watched from his window. He was confused. Why was this tiny person helping his grumpy garden?
+
+A few days later, Maya gasped. A little green shoot had pushed through the dirt! It grew and grew, reaching for the sun. Soon, a huge, magnificent sunflower stood tall in the giant's garden. It had a bright, happy face as big as a bicycle wheel!
+
+Barnaby came outside. He stared at the glowing yellow flower. It was the most beautiful thing he had ever seen. A tiny smile cracked through his bushy beard.
+
+He didn't want to STOMP anymore. He wanted to... water.
+
+He found an old bucket and gently sprinkled water around the sunflower. He carefully picked the prickly thorns away from its stem.
+
+Maya came back and clapped her hands. "You're helping it grow!" she said.
+
+Barnaby's smile grew bigger. "We are helping it grow," he said, his voice a low, friendly rumble.
+
+Soon, other colorful flowers began to pop up. Red poppies, blue cornflowers, and purple lupines saw how happy the sunflower was and decided to grow there too.
+
+Grumble Hill wasn't grumpy anymore. It was covered in color and happiness. And Barnaby the Giant wasn't grumpy either. He was too busy gardening with his very small, very smart friend.
+
+The end. What might grow in your garden if you give it a little love?`, img: "garden.jpg"}
+      ],
+
+      6: [
+        {text: `Finn loved exploring the attic. It was full of dusty treasure. One rainy Saturday, he found an old wooden chest under a sheet. It wasn't locked. With a creaky click, he opened it.
+
+Inside, under a stack of yellowed letters, was a map. But it wasn't a normal map. It was drawn on soft, crinkly leather. The words were written in swoopy, old-fashioned handwriting. At the top, it said: "The Map of Whispers: To Find What is Lost."
+
+The map didn't show roads or rivers. It showed his own house and yard! There was an X marked behind the big oak tree.
+
+Finn's heart beat with excitement. He ran downstairs, pulled on his rain boots, and dashed outside.
+
+The map's first clue was a picture of a stone with a spiral carved into it. Finn knew that stone! It was by the lavender bush. He ran to it. Tucked behind the stone was a small, rusty key. The map was real!
+
+The next clue showed a weathervane on a roof. Finn looked up at the rooster weathervane on the garage. How was he supposed to get up there? Just then, a gust of wind blew. The old rooster spun around and squeaked. Something small and metallic fell from its base and landed in a flower bed with a plink.
+
+It was another key, this one silver and cold.
+
+The final clue was the hardest. It showed a rippling wave. Finn was stumped. There was no water in his yard! He sat on the back step, thinking. The rain had stopped, and the sun came out. He watched the puddles in the driveway slowly dry up.
+
+Then he saw it. The sunlight hit a long, narrow puddle by the fence. The wind rippled across its surface, just like the drawing on the map!
+
+Finn ran over. There, half-hidden in the mud next to the puddle, was a small, iron ring. He pulled it, and a hidden cellar door lifted up! It led to a small, dry space under the porch.
+
+Inside was not a chest of gold or jewels. It was a smaller wooden box. Finn's hands trembled as he used the two keys he had found. The lock turned with a satisfying clunk.
+
+He lifted the lid. Inside, carefully wrapped in soft cloth, was a collection of treasures: a smooth, blue marble; a photograph of a boy who looked just like Finn holding a turtle; a champion swimming ribbon; and a journal filled with stories of adventures in these very woods.
+
+It was a memory box. It belonged to his grandfather when he was a young boy.
+
+That evening, Finn brought the box to his dad. His dad's eyes grew wide and misty. "I wondered where this had gone," he said softly. "Grandpa told me he hid his favorite things somewhere special, but we never found it."
+
+Together, they looked at each treasure, and Dad told Finn stories about his own father as a young, adventurous boy.
+
+Finn didn't find gold, but he found something better. He had found a connection. And the best part? The Map of Whispers was blank now, waiting for him to draw his own adventures for someone else to find one day.
+
+The end. What treasures would you hide in a secret box?`, img: "whisper.png"}
+      ],
+ 7: [
+        {text: `Most people thought the old carnival at the edge of town was abandoned. The Ferris wheel was a skeleton against the moon, and the ticket booth was choked with ivy. But Lila knew a secret.
+
+She knew it only came to life one night a year, at midnight on the first day of summer. And it wasn't for people. It was for lost things.
+
+Lila had a mission. Her most treasured possession, a music box that played a tinkling tune her grandmother used to hum, had stopped working. A tiny, golden gear had fallen out and vanished. Without it, the music was lost forever.
+
+That summer night, she set her alarm for 11:30 p.m. She crept out her window with a flashlight and the broken music box, her heart thumping with excitement and fear.
+
+At exactly midnight, a strange, silvery mist swirled around the carnival grounds. A soft, magical light glowed from within the tents. The carousel began to turn, but instead of painted horses, it carried lone mittens, single socks, and keys with no locks. The ring-toss game was run by a nervous-looking spectacled hamster, tossing buttons and bottle caps.
+
+This was the place.
+
+Lila walked past a booth where a raccoon was juggling missing puzzle pieces. "Excuse me," she asked, holding up her golden gear. "Have you seen anything that matches this?"
+
+The raccoon shook its head and juggled faster.
+
+She then approached the Ferris wheel, which was now carrying lonely teddy bears and dropped coins. The operator was a tall, elegant heron wearing a conductor's cap. "Tickets?" it asked in a raspy whisper.
+
+"I don't have a ticket," Lila said, her voice small. "But I've lost something important. A gear for my music box. It's about this big, and gold..." She held it up.
+
+The heron bent its long neck down. "Ah. A sound has gone missing. A serious matter. You may enter, but the Carnival has its own rules. You cannot simply find your item. You must win it back."
+
+Lila's hope flickered. "How?"
+
+The heron pointed a feathery wing toward a dark alley of game booths. "Prove you are a good listener."
+
+The first game was called "Pin the Squeak on the Mouse." A small, cloth mouse sat on a shelf, missing its squeaker. Lila was blindfolded and spun around. The carnival was a chorus of strange sounds: the pop of popcorn (which was actually popping pearls from a broken necklace), the crank of a distant machine, and the jingle of lost bells.
+
+But underneath it all, she heard a faint, high-pitched squeak-squeak-squeak. She pointed straight ahead. "There!"
+
+The blindfold was removed. She was pointing right at the mouse. The hamster from the ring-toss game nodded and handed her a silver token.
+
+The next game was "The Hall of Echoes." It was a funhouse mirror maze. "Find the echo that belongs to you," the heron instructed.
+
+Lila stepped inside. Her reflection fractured into a hundred Lilas. From all around, she heard echoes of laughter, whispers, and snaps. But then, she heard it. A faint, familiar, tinkling melody—the song her music box played. It was coming from the reflection in the far left mirror. She walked toward it, and as she touched the glass, it melted away, leaving a second golden token.
+
+She ran back to the heron and held out her two tokens. The heron nodded and reached into its cap. It pulled out a small, velvet pouch and poured the contents into Lila's hand.
+
+There it was. Her tiny, golden gear, gleaming under the magical lights.
+
+She thanked the heron and the other creatures, her voice full of wonder. As the first rays of the sun touched the horizon, the silvery mist began to fade. The carousel slowed, the lights dimmed, and the carnival grew still and silent once more.
+
+Lila hurried home, slipped back through her window, and as the sun rose, she carefully fitted the gear into her music box. She turned the key.
+
+The familiar, tinkling tune filled her room, the sound of her grandmother’s love, found again. She knew it was a secret she would keep forever, a story for herself alone, until perhaps one night, someone else might need to find what they had lost.
+
+The end. What do you think is the most valuable thing someone could ever lose?`, img: "carnival.png"}
+              ],
+ 8: [
+        {text: `Elara felt a pull toward lost things. Not just lost lost, like a missing sock, but truly lost—the things everyone else had forgotten. She was the finder of lonely buttons, abandoned bird nests, and fossils hidden in creek beds. Her bedroom was a museum of misfit treasures.
+
+Her newest project was the old radio in her grandfather’s attic. It was a giant, walnut-colored box with a glowing green eye called a tuning dial. Grandpa said it hadn’t worked in fifty years. “Its cause is lost, Ellie,” he’d said with a sigh.
+
+Elara refused to believe that. After carefully dusting it off, she found the problem: a single, frayed wire inside had come loose. Her hands, steady from fixing countless toy cars and jewelry clasps, re-soldered the connection.
+
+That night, as a thunderstorm rumbled outside, she plugged it in. The green eye glowed to life with a soft hum. But instead of finding music or news, the dial only picked up static… except for one spot.
+
+At the very far end of the dial, where no normal station should be, a voice crackled through the speaker. It wasn't speaking words, but a series of strange, beautiful codes: “Crackle-hiss… three chirps, a long drone… hiss-pop… two clicks, a warble.”
+
+It was a signal. A lost signal.
+
+The next day, she took her notebook, where she’d written down the code, to the library. She looked up Morse code, but this was different. She studied bird calls and whale songs, but nothing matched. It was while she was looking at a star chart that she got her first clue. The sequence of sounds matched the pattern of a constellation—Orion’s Belt.
+
+That was it! The code was a map.
+
+Following the sounds, she was led on a strange journey through her town. Three chirps meant three blocks north. A long drone meant follow the train tracks. Two clicks and a warble meant find the second oak tree by the old stone bridge.
+
+It led her to the town’s forgotten historical society, a small, dusty building that was always locked. The last sound in the sequence was a single, clear tone. Elara looked around. There, partly buried in the dirt by the foundation, was a heavy, rusted metal button. On a hunch, she pressed it.
+
+With a groan of disuse, a hidden compartment slid open in the wall beside the door. Inside wasn't gold or a secret document. It was a small, ceramic jar, sealed with wax. Tucked beside it was a faded photograph of a group of kids from long ago, standing proudly next to a sapling that was now the giant oak in the town square.
+
+She carefully broke the seal. The jar was filled with dozens of tiny, rolled-up papers. She unrolled one.
+
+“I lost the race to Tommy today. Cause: my shoe was untied.”
+Another read: “I lost my courage to speak in the school play. Cause: I forgot my lines.”
+Another: “I lost my favorite marble to the drainpipe. Cause: I was showing off.”
+
+They weren't reports of lost items, but of lost moments, lost chances, and lost feelings. This was a archive of every small, childhood defeat that everyone else had forgotten. The historical society wasn't for history; it was for humility. The radio signal was a beacon, ensuring that these small, human stories wouldn't be lost forever.
+
+Elara understood. She wasn't just a keeper of lost objects. She was a keeper of lost causes and the stories they held. She carefully placed the jar back, sealing it with new wax from a candle she brought for her adventures.
+
+That night, she tuned the radio again. The signal was still there, but now, a new sequence had been added at the end: a series of quick, happy beeps—a thank you.
+
+Elara smiled. She had fixed the radio, but it had shown her something much more important. Some things are meant to be found, not to be kept, but to be remembered.
+
+The end. If you tuned a radio to a secret frequency, what kind of lost story do you think you might hear?
+
+New chat`, img: "cause.jpeg"}
+      ],
+ 9: [
+        {text: `Once upon a time, in the small village of Sundarpur, lived a curious 9-year-old girl named Anya. She loved asking questions about everything she saw—why the sky turned orange at sunset, why ants marched in a straight line, and why the moon followed her at night.
+
+One summer afternoon, while playing in the forest near her home, Anya heard a soft whisper.
+
+“Pssst… over here!”
+
+She looked around but saw no one. Then she noticed a huge banyan tree with eyes carved into its trunk. To her surprise, the tree blinked!
+
+“I am Taru, the Talking Tree,” said the tree with a gentle smile.
+
+Anya gasped. “Trees can’t talk!”
+
+“Most can’t,” Taru chuckled, “but I have been given the gift of speech to guard a secret.”
+
+Anya’s eyes sparkled. “What secret?”
+
+Taru bent one of his branches low and said, “Hidden deep in this forest is a golden feather. Whoever finds it can make one wish come true—but only if the wish is for kindness.”
+
+Excited, Anya set off to find the feather. Along the way, she faced three challenges:
+
+A fast river with slippery stones. Anya noticed a family of ducks struggling to cross. She helped them first, then carefully crossed herself.
+
+A dark cave where a frightened puppy barked. Instead of running away, she comforted the puppy and carried it outside.
+
+A steep hill full of thorny bushes. She tore her dress a little but bravely climbed to the top.
+
+At last, on the hilltop, a beam of sunlight revealed the golden feather. Anya picked it up and rushed back to Taru.
+
+“What will you wish for?” asked the tree.
+
+Anya thought for a moment. She could wish for toys, sweets, or even flying powers—but then she looked at the puppy wagging its tail and the ducks swimming happily.
+
+“I wish,” she said, “that every hungry child in my village always has food.”
+
+The golden feather glowed brightly and vanished. The next day, Anya saw something magical: the village’s once-empty granary was now full, and no child went hungry again.
+
+Taru’s voice echoed softly in the breeze:
+“True kindness always brings the greatest magic.”
+
+From then on, Anya became known as the girl who listened to the forest and used her heart to change the world.`, img: "tree.png"}
+],
+
+10: [
+        {text: `ChatGPT said:
+
+Here’s a fun and slightly more adventurous story for a 10-year-old:
+
+The Midnight Adventure of Rohan and the Star Map
+
+Rohan was a 10-year-old boy who loved adventures. He had a telescope by his window and spent many nights gazing at the stars. One night, while adjusting his telescope, something unusual happened—the stars seemed to rearrange themselves into the shape of a glowing map!
+
+At the bottom of the map, a tiny comet zipped by and wrote glowing words in the sky:
+“Follow the path if you’re brave enough.”
+
+Rohan’s heart raced. He quickly put on his sneakers, grabbed a flashlight, and sneaked out of the house. The star map pointed toward the old forest near his village.
+
+Inside the forest, Rohan noticed the stars shining brighter, almost guiding his steps. He soon reached a giant stone gate with strange symbols. As he touched the symbols, they lit up, and the gate slowly opened with a rumble.
+
+Behind it lay a hidden valley filled with sparkling crystals, waterfalls that glowed in the dark, and animals made of light. Among them was a majestic silver wolf with eyes like stars.
+
+The wolf spoke in a deep, echoing voice:
+“Welcome, Rohan. You’ve been chosen to be the Guardian of the Star Map. This map shows hidden places of wisdom and treasures—but it must be used only for courage and kindness.”
+
+Rohan nodded bravely. “I promise.”
+
+The wolf then gave him a small crystal pendant. “This will guide you whenever the world needs your help.”
+
+Suddenly, the star map folded into the pendant, and everything faded. Rohan found himself back in his room, as if no time had passed. But when he looked at the pendant, it glowed softly, reminding him of his secret adventure.
+
+From that day on, Rohan wasn’t just a boy who loved stars—he was their guardian, ready for the next midnight call.`, img: "kid.jpg"}
+],
+11: [
+        {text: `The Clockmaker’s Secret
+
+In the town of Willowbrook, there was an old clock shop at the corner of Maple Street. Most kids thought it was boring—just dusty clocks ticking away. But for 11-year-old Maya, the shop was magical. She loved visiting Mr. Alaric, the clockmaker, who always had a twinkle in his eye.
+
+One rainy afternoon, as Maya helped him dust the shelves, she noticed a strange clock hidden behind others. Unlike the rest, it had 13 numbers instead of 12 and glowed faintly blue.
+
+“What’s this one?” Maya asked.
+
+Mr. Alaric smiled mysteriously. “Ah, that clock doesn’t tell time—it tells possibility.”
+
+Before Maya could ask more, the clock’s hands spun wildly. With a flash of light, the shop vanished. Maya found herself standing in the same street—but everything was different. The buildings shimmered like crystal, glowing trains flew in the sky, and robots chatted with people.
+
+“It’s the future!” she whispered.
+
+Suddenly, a boy about her age appeared. “You’re not from here, are you?” he asked. “The clock brought you.”
+
+His name was Kian, and he explained that the clock was a Time Key, created to show brave children different timelines. But something was wrong—the Time Key was cracking. If it shattered, the future and present would collapse into chaos.
+
+Maya and Kian set off on a quest to fix it. They crossed a glass bridge over floating rivers, solved a riddle from a robot librarian, and climbed the Tower of Hours, where giant gears turned the sky like a clock face.
+
+At the top, Maya realized the answer wasn’t fixing the crack with tools—it was fixing it with choice. She had to decide: keep the clock’s power for herself or restore it so it could guide others.
+
+She took a deep breath. “The clock belongs to everyone.”
+
+The crack sealed instantly, glowing brighter than ever. Maya blinked—and found herself back in the dusty shop. Mr. Alaric handed her a small pocket watch.
+
+“You made the right choice,” he said with a smile. “Now you’re part of the Clockkeepers.”
+
+From that day on, Maya knew her life wasn’t ordinary anymore. Every tick of a clock was a secret reminder that time held mysteries waiting for her to discover.`, img: "clock.png"}
+],
+      12: [
+        {text: `Arjun was 12, a boy who loved reading more than anything else. He often stayed up late with a flashlight under his blanket, devouring stories of heroes, villains, and magical lands.
+
+One stormy evening, while taking shelter inside his town’s old public library, Arjun noticed something strange. A tall, black shelf stood in the corner, covered in cobwebs, with books that seemed untouched for years. But when lightning flashed, he saw that the shelf cast no shadow at all.
+
+Curious, he pulled out a thick leather book titled The Book of Doors. The moment he opened it, the letters rearranged themselves into glowing words:
+
+“Welcome, Reader. Choose your door.”
+
+Suddenly, a swirl of light formed around him, and three glowing doors appeared—one made of fire, one of water, and one of mist. Arjun hesitated but stepped through the mist door.
+
+He landed in a vast underground library where books floated in the air and whispered secrets. But not all the books were kind. Some had sharp teeth, flapping like bats. Shadows moved between the shelves, watching him.
+
+A hooded figure appeared.
+“You’ve entered the Shadow Library,” the figure said. “It’s where forgotten stories live. But beware—if you can’t finish the story you start, you’ll be trapped inside it forever.”
+
+Arjun’s heart pounded. To escape, he had to pick a book, live its adventure, and reach the ending. He chose a glowing book called The Guardian’s Quest.
+
+The moment he touched it, he was thrown into a desert with endless golden sands. He faced sandstorms, solved riddles written on ancient stones, and outsmarted a giant serpent guarding a crystal tower. At the top of the tower, he found the last page of the story. As he read it aloud, the desert dissolved.
+
+Arjun was back in the Shadow Library. The hooded figure nodded. “You are braver than most. The library has accepted you.”
+
+The book he held transformed into a silver bookmark, glowing faintly. “This will guide you back whenever a story needs you,” the figure whispered before fading into the shelves.
+
+When the storm outside cleared, Arjun found himself back in the real library—bookmark in hand. He smiled, knowing his nights of reading would never be the same again.
+
+Every book could now be a doorway. And he was ready.`, img: "library.jpeg"}
+],
+13: [
+        {text: `Thirteen-year-old Neha wasn’t like other kids in her town. While most were busy with cricket matches and gossip, she loved exploring abandoned places. Old ruins, half-broken wells, forgotten temples—anything that carried mystery drew her in.
+
+One summer evening, Neha and her cousin Aarav wandered into the ruins of the ancient Kalindi Fort. Locals whispered it was haunted, but Neha laughed at the idea. The fort was crumbling, covered in moss, with bats fluttering in the shadows.
+
+Inside, she noticed a stone carving of a lotus. At its center lay a small, dusty object—an amulet with strange markings. The moment Neha touched it, a cold wind rushed through the fort, and she heard a faint whisper:
+
+“Set me free…”
+
+Startled, she dropped it, but the amulet clung to her palm as if glued. That night, when she tried to sleep, the whispers grew louder. Images flashed in her dreams—a girl her age, dressed in ancient clothes, trapped inside a mirror.
+
+The next day, Neha researched in the town library. She discovered that centuries ago, Kalindi Fort was ruled by a cruel king who feared losing power. A young princess had stood against him, but before she could gather help, the king trapped her spirit inside a magical amulet.
+
+Neha realized with a chill that she now carried that very amulet.
+
+But there was more—the text said the amulet chose someone only once in a hundred years, giving them the chance to break the curse. To do so, the chosen one had to face three trials inside the “realm of echoes.”
+
+That night, the amulet glowed, and Neha was pulled into another world. She found herself in the realm of echoes—a dark, endless corridor lined with mirrors, each reflecting not just her image, but her fears.
+
+In the first trial, she faced a mirror where shadows whispered all her doubts—“You’re weak. You’ll fail.” But Neha shouted back, “I decide who I am!” and the mirror shattered.
+
+In the second, she had to solve a puzzle with floating runes before the floor crumbled beneath her. Her quick thinking saved her.
+
+In the third, she confronted the king’s spirit, who tried to scare her into giving up. But Neha remembered the girl in her dreams—the trapped princess—and held the amulet high.
+
+With a blinding light, the princess’s spirit broke free. The king’s shadow vanished forever.
+
+When Neha woke, she was back in the fort, the amulet now cracked and lifeless. Aarav rushed over, worried, but Neha just smiled.
+
+For in the distance, she saw the spirit of the princess, finally free, nodding in gratitude before fading into the night.
+
+Neha slipped the broken amulet into her pocket. She knew this wasn’t just an adventure—it was the beginning of something bigger. Some mysteries choose you, and once they do, your life is never ordinary again.`, img: "scare.png"}
+],
+14: [
+        {text: `The invitation wasn't paper. It was a whisper that wound its way through the crowded hallway between classes, settling in Maya’s ear like a secret.
+
+“Tired of being nobody? Find the shop with the bell that doesn’t ring.”
+
+It was exactly what she was tired of. At fourteen, Maya was the human equivalent of wallpaper: pleasant, but utterly forgettable. She wasn't a star athlete, a genius, or a TikTok famous comedian. She was just… Maya. And in the brutal ecosystem of high school, "just" felt like a death sentence.
+
+That afternoon, driven by a desperation she’d never admit to, she wandered the older part of town, where the shops were weirder and the streets quieter. And there it was, tucked between a dusty bookstore and a closed-down cafe: a narrow storefront with a single, tarnished brass bell hanging above the door. She reached up and flicked it. Not a sound.
+
+The Un-You-Nique Boutique.
+
+The inside smelled of old velvet and ozone. Clothes weren't on racks but on headless mannequins, each bathed in a soft, individual spotlight.
+
+“Looking for an upgrade, dear?” a woman asked. She was tall and elegant, with eyes that seemed to change color in the light. Her name, she said, was Madame Astra.
+
+“I just want to be… more,” Maya mumbled, feeling foolish.
+
+“A common request,” Madame Astra smiled, a thin, knowing thing. She guided Maya to a mannequin wearing a vintage band t-shirt for a group Maya had never heard of, a perfectly distressed leather jacket, and jeans that looked both tough and expensive. “This is the ‘Effortlessly Cool’ package. Very popular. Worn by a rising influencer just last week. The confidence is practically woven into the threads.”
+
+Maya tried it on in the plush changing room. She looked in the mirror and gasped. It wasn’t just that the clothes fit perfectly. It was the girl wearing them. She stood taller. A sly, confident smirk played on her lips—her lips, but not her expression. It was like she was possessed by a cooler, better ghost of herself.
+
+She bought the outfit with her birthday money. The price was steep, but the confidence felt priceless.
+
+The next day at school was a revolution. A guy from her math class, whose name she’d barely dared to whisper, said, “Whoa, cool shirt! I love that band’s early stuff.”
+Maya, without thinking, heard herself say, “Right? Their first album was raw genius before they sold out.” She had no idea where the words came from.
+
+She was invited to sit at a crowded table at lunch. She made a joke, and everyone laughed—a real, genuine laugh. It was everything she’d ever wanted.
+
+But by third period, her neck itched. The leather jacket, so soft at first, now felt stiff and restrictive. The band t-shirt felt like a lie against her skin. During English, her new, cool friend Zoe was mercilessly making fun of a girl’s presentation.
+
+“God, could she be any more awkward?” Zoe sneered, looking at Maya for backup.
+
+The old Maya would have stayed silent, hating herself for it. The new, cool Maya knew the script. She was supposed to laugh, to join in, to solidify her new status.
+
+But the words stuck in her throat. The girl giving the presentation was nervous, her voice shaking. She was… her. The old her.
+
+Maya just muttered, “She’s trying,” and looked away.
+
+Zoe rolled her eyes. “Whatever. You’re being weird.”
+
+The magic was cracking. The borrowed confidence felt thin and cheap. This wasn’t her. It was a costume, and it was starting to smell like someone else’s sweat.
+
+She fled after school, back to the boutique. The bell was still silent.
+
+“It’s not working!” Maya blurted out, tears of frustration in her eyes. “It feels wrong. It’s making me mean.”
+
+Madame Astra’s smile was gone, replaced by a look of cool indifference. “The package performs as advertised. It provides a pre-made personality. The side effects—the emotional dissonance, the mild identity erosion—are listed in the fine print.” She gestured to a tiny placard on the counter, the writing so small it was almost invisible.
+
+“I want a refund,” Maya said, her voice trembling.
+
+“Returns are not our policy,” Madame Astra said smoothly. “Once a personality is worn, it cannot be resold. It’s… contaminated.”
+
+Defeated, Maya trudged home, the leather jacket feeling like a lead weight. In her room, she tore off the clothes, throwing them in the corner like they were on fire. She pulled on her own soft, worn-out hoodie and a pair of pajama pants covered in cartoon dogs. She took a deep, shuddering breath. For the first time all day, she felt like she could breathe.
+
+The next day, she was just Maya again. The boy from math class didn’t look at her. Her lunch table was full. She ate alone on a bench outside.
+
+But something was different. A girl from her English class, the one who’d given the shaky presentation, walked by, then hesitated.
+“Hey,” she said softly. “Thanks for yesterday. For not… you know.”
+
+Maya looked up. “It was nothing.”
+
+“It wasn’t,” the girl said. “I’m Chloe.” She pointed to Maya’s notebook, which had a small, detailed drawing of a dragon in the margin. “That’s really good.”
+
+“Thanks,” Maya said, and this time her smile was her own. It was small and a little shy, but it was real.
+
+It wasn’t a revolution. It wasn’t a crowd laughing at her jokes. It was one person. One connection. It was quieter, but the silence felt like her own, and not the eerie silence of a bell that would never ring. She was still just Maya. But maybe, she started to think, “just” wasn’t so bad after all. It was a place to start.
+
+New chat`, img: "flow.jpg"}
+],
+15: [
+        {text: `Fifteen-year-old Ayaan was known for two things: his love for solving puzzles and his tendency to break rules when curiosity struck. He wasn’t the top student, but when it came to riddles, ciphers, or strategy games, no one in school could match him.
+
+One evening, while searching through his late grandfather’s study, Ayaan discovered a leather-bound journal with sketches of strange symbols, gears, and mazes. On the first page was written:
+
+“The world hides its greatest truths in codes. To unlock them, follow the labyrinth.”
+
+Inside the journal was also a small brass key. At the back, there was a hand-drawn map of their city—only, the map showed underground tunnels that Ayaan had never heard of.
+
+Driven by curiosity, he followed the map late at night. It led him to an old metro station, long abandoned. Hidden behind a rusted metal door was a staircase spiraling downward into darkness. With a deep breath, Ayaan went in.
+
+What he found was astonishing—an underground labyrinth made of stone and steel, filled with gears, pulleys, and strange mechanical puzzles. Each wall had ciphers etched into it, and doors only opened when the riddles were solved.
+
+But Ayaan wasn’t alone. A group of masked people, calling themselves The Order of the Labyrinth, were already there. They believed the labyrinth held an ancient device—a machine that could predict the future by processing human choices. And they wanted Ayaan, with his puzzle-solving skills, to help unlock it.
+
+Ayaan faced a choice:
+
+Join the Order and see the labyrinth’s full secrets, risking being trapped in their dangerous games.
+
+Or outsmart them, solve the final code himself, and seal the labyrinth forever.
+
+After nights of puzzles, narrow escapes, and decoding his grandfather’s cryptic notes, Ayaan uncovered the truth: his grandfather had once been part of the Order but left after realizing the machine wasn’t meant to predict the future—it was meant to control it.
+
+Standing before the final chamber, gears humming like a heartbeat, Ayaan held the brass key. He could insert it and give the Order control, or he could destroy it and let the labyrinth remain a mystery.
+
+With trembling hands, he chose the latter. He jammed the key into the gears, breaking the machine forever. The labyrinth collapsed around him, but Ayaan escaped just in time.
+
+When he returned home, he opened his grandfather’s journal one last time. At the bottom of the last page, new words had appeared, as if waiting for him:
+
+“Well done, Ayaan. Some puzzles are meant to be solved. Others are meant to be protected.”
+
+From that night, Ayaan knew his life would never be normal. The labyrinth was gone, but the Order wasn’t—and they would come looking for him.`, img: "code.png"}
+],
+16: [
+        {text: `The summer I was sixteen, my world shrank to the size of a hospital room. It smelled of antiseptic and wilted flowers, a scent I knew would be permanently seared into my memory. My older brother, Leo, was in the bed, a mess of wires and stillness. A car accident. A split-second of screeching tires and shattered glass had stolen the loudest person I knew.
+
+The doctors used words like “irreversible neural damage” and “persistent vegetative state.” My parents used words like “hope” and “miracles.” I just sat in the vinyl chair, listening to the mechanical hiss and beep of the ventilator, feeling a hollowed-out silence inside me that was louder than anything.
+
+It was on the third night, unable to sleep, that I found the coin. I was pacing the empty, fluorescent-lit hallway when I stubbed my toe on a loose tile near a forgotten supply closet. Cursing, I bent down and saw it. It wasn’t a quarter or a dime. It was a perfect circle of cool, dark metal, heavier than it looked. On one side was an intricately carved tree with sprawling roots. On the other, a single, staring eye.
+
+As my fingers closed around it, the world lurched.
+
+The fluorescent lights flickered and died, replaced by the warm, golden glow of sunset. The sterile hallway walls melted into the familiar, paneled walls of our home. The smell of disinfectant was gone, replaced by the scent of lemon polish and my dad’s infamous burnt lasagna.
+
+And there was Leo. Not the pale, still Leo of the hospital, but my Leo. He was wearing his faded band t-shirt, and he was laughing, whole and alive, grabbing his jacket from the hook by the door.
+
+“Come on, slowpoke! We’re gonna be late!” he said, his voice exactly as I remembered it—a little rough, always teasing.
+
+My heart stopped. This was the night. The last night. He was going to a party. I was supposed to go with him, but we’d had a stupid fight over something trivial—I’d wanted to watch a movie, he’d wanted to go out. I’d told him he was selfish. He’d told me I was a boring little kid.
+
+“Don’t go,” I whispered, my voice cracking. The words I’d replayed a million times in my head.
+
+He grinned, that infuriating, charming grin. “Don’t be such a drag, Maya. I’ll be back by midnight. Save me some of Dad’s charcoal surprise.”
+
+He swung the door open. The cool night air rushed in. This was the moment. I could stop him. I could throw myself in front of the door, scream, break something—anything to keep him from walking out.
+
+But I didn’t. I just stood there, frozen, my throat tight with all the words I couldn’t say. I was still the angry, hurt little sister.
+
+“Whatever,” I muttered, turning my back on him.
+
+The door clicked shut.
+
+The world dissolved again in a nauseating swirl. The warm light of home was ripped away, replaced by the cold, blue-tinged dark of my bedroom. I was on my knees, gripping the coin so tightly its edge bit into my palm. I was gasping, tears streaming down my face. It had felt so real. The weight of the moment, the crushing regret, was fresh all over again.
+
+I looked at the coin. The eye on the back seemed to stare into me, knowing.
+
+I spent the next week testing it. The coin only worked in that one spot near the supply closet. And it only showed one moment: the last five minutes before Leo left. I lived it over and over. Each time, I tried something different.
+
+I apologized. I begged. I tried to hide his car keys. I even, in one desperate iteration, told him I thought I was having a heart attack. Every time, without fail, something happened. A phone would ring, a parent would call out, a friend would honk outside—some small, unpredictable event would foil my plan, and he would always, always walk out that door.
+
+The coin was a cruel teacher. It wasn’t offering a chance to change the past. It was forcing me to relive my failure, to prove to me that no matter what I did, the outcome was fixed.
+
+I was trapped in a loop of grief and guilt, becoming a ghost in my own life. My parents were worried, my friends stopped calling. The real world felt grey and distant compared to the painful, vivid reality of that golden-hued memory.
+
+One night, clutching the coin, I finally understood. I couldn’t stop the accident. I couldn’t control the actions of a drunk driver miles away. The coin wasn’t about saving him.
+
+It was about saving me.
+
+I walked to the spot in the hallway, the coin cold in my hand. I took a deep breath and let the world shift once more.
+
+Leo was there, grinning, grabbing his jacket. “Come on, slowpoke!”
+
+This time, I didn’t try to stop him. I didn’t freeze. I looked at him—really looked at him. I memorized the way his hair fell across his forehead, the easy confidence in his stance, the life in his eyes.
+
+“Leo,” I said, my voice clear and steady.
+
+He paused, surprised by my tone.
+
+“I’m sorry we fought,” I said. “I love you. Have fun. Be safe.”
+
+His grin softened into a genuine smile. He reached out and ruffled my hair, a gesture he hadn’t done since we were kids. “Love you too, weirdo. Don’t wait up.”
+
+And he walked out the door.
+
+I stood in the silence of our empty hallway, but the crushing weight was gone. The regret was still there, it would always be there, but it was no longer a boulder on my chest. It was a stone in my pocket, a part of me I could carry.
+
+The memory faded. I was back in the hospital hallway. I walked to Leo’s room and sat beside him. I took his still hand in mine.
+
+“I’m here, Leo,” I whispered. “I’m not going anywhere.”
+
+I didn’t know if he could hear me. But for the first time, I felt like I was really talking to him, not to my own guilt.
+
+The next morning, I went back to the supply closet. I placed the heavy, dark coin on the floor and pushed it back under the loose tile with my foot. It wasn’t mine to keep. It was a lesson, and I had finally learned it.
+
+I couldn’t change the past. But I could stop letting it haunt the present. My job wasn’t to keep him alive in a hospital bed; my job was to remember the boy who lived, the one who laughed and stole lasagna and ruffled my hair. My job was to live for both of us now.
+
+`, img: "echo.jpg"}
+],
+17: [
+        {text: `Aarav was 17 when he found the old wooden box hidden behind the bookshelf in his late grandfather’s study. Inside, among faded photographs and a pocket watch, was a sealed envelope with his name on it—written in handwriting that clearly belonged to his grandfather.
+
+Hands trembling, Aarav opened the letter.
+
+"My dear Aarav, if you’re reading this, then it means you are old enough to know the truth. Our family carries a responsibility passed down for generations—one tied to a secret hidden beneath our town. Follow the old railway tracks at midnight. You will find the beginning of your path there."
+
+Aarav’s heart raced. His grandfather had been a historian, always talking about hidden truths buried in plain sight. But this was different—it was personal.
+
+That night, curiosity overcame fear. With only a flashlight and the letter, Aarav followed the abandoned railway tracks to a forgotten tunnel. Inside, the air smelled of rust and secrets. Strange markings were carved into the walls, and as he traced them, the shapes formed a map.
+
+The map led to a small underground chamber. There, a steel chest sat waiting, with his grandfather’s pocket watch acting as the key. Inside, Aarav found old journals, coded messages, and a leather-bound book titled: “The Keepers.”
+
+The journals revealed that their family had long been guardians of a hidden archive—records of untold histories that powerful people wanted erased. His grandfather had protected them his whole life, and now it was Aarav’s turn to decide.
+
+Would he take on this heavy responsibility and guard the truth, even if it put him at risk? Or would he walk away, leaving the past buried?
+
+As he stood in the flickering light of his flashlight, Aarav realized the choice wasn’t just about his family—it was about who he wanted to be.
+
+He closed the chest, locked it, and whispered to the shadows:
+"I’m ready."`, img: "letter.png"}
+],
+
+
+18: [
+        {text: `There was once a young man named Ravi who wanted to start his own business... He spent months hunched over his laptop, crafting the perfect business plan for "EcoGift," a company that would create beautiful, sustainable gift boxes filled with products from local, ethical artisans. He had spreadsheets for funding, marketing strategies, and a name he loved. But every time he was about to take the first real step—to register the company or order samples—a wave of doubt would crash over him.
+
+What if no one buys it? What if I can't compete with the big brands? What if I lose all my savings?
+
+One evening, paralyzed by these thoughts, he went to visit his grandfather, a retired carpenter who spent his days in a small workshop that smelled wonderfully of sawdust and linseed oil.
+
+"Grandfather," Ravi sighed, slumping onto a stool. "I have this dream, but I'm so afraid of failing. How did you ever start your workshop? Weren't you scared?"
+
+His grandfather put down a piece of sandpaper and picked up a rough, weathered block of walnut wood. "Oh, every day," he said with a warm chuckle. "But fear is not a stop sign, Ravi. It is a guardrail. It tells you what to be careful of, not what to avoid."
+
+He handed the block of wood to Ravi. "What do you see?"
+
+"It's a block of wood," Ravi said, confused.
+
+"Look closer."
+
+Ravi turned it over in his hands. It was heavy, solid, but rough and formless.
+
+"Now, watch," his grandfather said. He selected a chisel and a mallet. "I don't look at this block and see its final form all at once. If I did, the task would be too great. I would see all the ways I could ruin it. I would be afraid to make the first cut."
+
+He placed the chisel at a precise angle and gave it a gentle tap. A small curl of wood shaving fell away.
+
+"I ask a simpler question," he continued, tapping again. "Not 'What will this become?' but 'What is the very next right cut?'"
+
+Tap. Tap. Tap.
+
+With each small, confident strike, a shape began to emerge from the wood. It wasn't a masterpiece yet, but it was no longer just a block.
+
+"Your business is the same," his grandfather said, his eyes on his work. "You are looking at the finished, polished masterpiece and it frightens you because you don't know how to carve it. So you never pick up the mallet. Don't focus on building the whole company today, Ravi. Just make the next right cut."
+
+Ravi held his breath, watching the steady, patient work. The lesson was settling deep within him.
+
+The next morning, Ravi didn't try to register his entire company. That felt too big. Instead, he asked himself: What is the next right cut?
+
+He found the answer: Email one local artisan.
+
+So he did. He wrote a single email to a woman who made beautiful beeswax candles, asking if she'd be interested in potentially collaborating. She wrote back an hour later, excited by the idea.
+
+Emboldened, Ravi asked the next question: What is the next right cut?
+
+Find a second artisan.
+
+By the end of the week, he had five interested vendors. The next cut was to build a simple, one-page website. Then, to order small sample products from each artisan. Each task was manageable. Each small action was a tap of the mallet, carving away the fear of the unknown.
+
+A month later, Ravi stood in his small apartment, surrounded by the beautiful, handcrafted products that would make up his first "EcoGift" box. It wasn't a global empire. It was just a single, well-crafted box. But it was real. He had carved it into existence, one small, deliberate cut at a time.
+
+He had learned that a dream is not built in a single, heroic leap, but carved patiently from the rough block of possibility, one right cut at a time.
+
+`, img: "bussiness.jpeg"},
+        {text: `A young woman named Sita became a leader in her village...Sita was not born into wealth or power. She was the daughter of farmers who worked tirelessly in the fields. But what set her apart was her determination to learn and her heart to help others. Every evening, after finishing her chores, she would sit under the old banyan tree with children from the village, teaching them how to read and write.
+
+Soon, people began to notice. When a water shortage struck the village, it was Sita who suggested digging a rainwater harvesting pond. She convinced the elders, organized the youth, and worked alongside everyone until clean water once again flowed through the fields.
+
+Her leadership grew naturally. Whenever there was a problem—be it crop failures, disputes, or the need for new ideas—it was Sita whom the villagers turned to. Unlike many leaders, she never gave orders from afar. She worked with her people, sharing their struggles and celebrating their victories.
+
+One day, government officials visited the village. Impressed by the progress and unity of the people, they asked, “Who is your leader?”
+
+The villagers all pointed to Sita, who stood humbly among them, her hands still muddy from planting saplings. She smiled and said, “I am not the leader. We are all leaders when we work together.”
+
+From that day on, Sita’s story spread beyond her village. She inspired nearby villages to believe in the strength of education, unity, and compassion. Sita had become not just a leader, but a light of hope for many.`, img: "success.jpg"}
+      ]
+    };
+
+    let currentIndex = 0;
+
+    function showStory() {
+      const age = ageSelect.value;
+      const storyBox = document.getElementById("story");
+      const storyText = document.getElementById("storyText");
+      const storyImage = document.getElementById("storyImage");
+
+      if (age && stories[age]) {
+        currentIndex = 0;
+        storyText.innerText = stories[age][currentIndex].text;
+        storyImage.src = stories[age][currentIndex].img;
+        storyImage.style.display = "block";
+        storyBox.style.display = "block";
+      } else if (age) {
+        storyText.innerText = "Sorry, story for this age is not available yet.";
+        storyImage.style.display = "none";
+        storyBox.style.display = "block";
+      } else {
+        alert("Please select an age!");
+      }
+    }
+
+    function nextStory() {
+      const age = ageSelect.value;
+      if (age && stories[age]) {
+        currentIndex = (currentIndex + 1) % stories[age].length;
+        updateStory(age);
+      }
+    }
+
+    function prevStory() {
+      const age = ageSelect.value;
+      if (age && stories[age]) {
+        currentIndex = (currentIndex - 1 + stories[age].length) % stories[age].length;
+        updateStory(age);
+      }
+    }
+
+    function updateStory(age) {
+      const storyText = document.getElementById("storyText");
+      const storyImage = document.getElementById("storyImage");
+      storyText.innerText = stories[age][currentIndex].text;
+      storyImage.src = stories[age][currentIndex].img;
+    }
+
+    // Text-to-Speech
+    function readStory() {
+      const storyText = document.getElementById("storyText").innerText;
+      if (storyText) {
+        let speech = new SpeechSynthesisUtterance(storyText);
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+      }
+    }
+  </script>
+</body>
+</html>
